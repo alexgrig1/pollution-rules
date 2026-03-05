@@ -6,12 +6,47 @@ package com.myspace.pollution.pollution_rules;
 
 public class Alert implements java.io.Serializable {
 
-    static final long serialVersionUID = 1L;
+	static final long serialVersionUID = 1L;
 
-    public Alert() {
-    }
+	@org.kie.api.definition.type.Label(value = "type")
+	private java.lang.String type;
+	@org.kie.api.definition.type.Label(value = "message")
+	private java.lang.String message;
+	@org.kie.api.definition.type.Label(value = "ts")
+	private java.util.Date ts;
 
+	public Alert() {
+	}
 
+	public java.lang.String getType() {
+		return this.type;
+	}
 
+	public void setType(java.lang.String type) {
+		this.type = type;
+	}
+
+	public java.lang.String getMessage() {
+		return this.message;
+	}
+
+	public void setMessage(java.lang.String message) {
+		this.message = message;
+	}
+
+	public java.util.Date getTs() {
+		return this.ts;
+	}
+
+	public void setTs(java.util.Date ts) {
+		this.ts = ts;
+	}
+
+	public Alert(java.lang.String type, java.lang.String message,
+			java.util.Date ts) {
+		this.type = type;
+		this.message = message;
+		this.ts = ts;
+	}
 
 }
