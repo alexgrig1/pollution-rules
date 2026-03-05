@@ -6,12 +6,59 @@ package com.myspace.pollution.pollution_rules;
 
 public class SensorReading implements java.io.Serializable {
 
-    static final long serialVersionUID = 1L;
+	static final long serialVersionUID = 1L;
 
-    public SensorReading() {
-    }
+	@org.kie.api.definition.type.Label(value = "sensorId")
+	private java.lang.String sensorId;
+	@org.kie.api.definition.type.Label(value = "locationId")
+	private java.lang.String locationId;
+	@org.kie.api.definition.type.Label(value = "pm25")
+	private java.lang.Double pm25;
+	@org.kie.api.definition.type.Label(value = "ts")
+	private java.util.Date ts;
 
+	public SensorReading() {
+	}
 
+	public java.lang.String getSensorId() {
+		return this.sensorId;
+	}
 
+	public void setSensorId(java.lang.String sensorId) {
+		this.sensorId = sensorId;
+	}
+
+	public java.lang.String getLocationId() {
+		return this.locationId;
+	}
+
+	public void setLocationId(java.lang.String locationId) {
+		this.locationId = locationId;
+	}
+
+	public java.lang.Double getPm25() {
+		return this.pm25;
+	}
+
+	public void setPm25(java.lang.Double pm25) {
+		this.pm25 = pm25;
+	}
+
+	public java.util.Date getTs() {
+		return this.ts;
+	}
+
+	public void setTs(java.util.Date ts) {
+		this.ts = ts;
+	}
+
+	public SensorReading(java.lang.String sensorId,
+			java.lang.String locationId, java.lang.Double pm25,
+			java.util.Date ts) {
+		this.sensorId = sensorId;
+		this.locationId = locationId;
+		this.pm25 = pm25;
+		this.ts = ts;
+	}
 
 }
