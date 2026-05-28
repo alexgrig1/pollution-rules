@@ -1,4 +1,6 @@
-package com.myspace.pollution.pollution_rules
+package com.myspace.pollution.pollution_rules;
+
+com.myspace.pollution.pollution_rules.Alert( )com.myspace.pollution.pollution_rules.SensorReading( )com.myspace.pollution.pollution_rules.Alert( )com.myspace.pollution.pollution_rules.SensorReading( )package com.myspace.pollution.pollution_rules
 
 import com.myspace.pollution.pollution_rules.SensorReading
 import com.myspace.pollution.pollution_rules.Alert
@@ -10,140 +12,7 @@ when
 then
     Alert a = new Alert();
     a.setType("PM25_HIGH");
-    a.setSeverity("HIGH");
-    a.setLocationId($r.getLocationId());
     a.setMessage("PM2.5 high: " + $r.getPm25() + " at location " + $r.getLocationId());
-    a.setTs(new Date());
-    insert(a);
-end
-
-rule "PM10 threshold alert"
-when
-    $r : SensorReading( pm10 != null, pm10 > 80.0 )
-then
-    Alert a = new Alert();
-    a.setType("PM10_HIGH");
-    a.setSeverity("HIGH");
-    a.setLocationId($r.getLocationId());
-    a.setMessage("PM10 high: " + $r.getPm10() + " at location " + $r.getLocationId());
-    a.setTs(new Date());
-    insert(a);
-end
-
-rule "PM1 threshold alert"
-when
-    $r : SensorReading( pm1 != null, pm1 > 30.0 )
-then
-    Alert a = new Alert();
-    a.setType("PM1_HIGH");
-    a.setSeverity("MEDIUM");
-    a.setLocationId($r.getLocationId());
-    a.setMessage("PM1 high: " + $r.getPm1() + " at location " + $r.getLocationId());
-    a.setTs(new Date());
-    insert(a);
-end
-
-rule "High humidity alert"
-when
-    $r : SensorReading( humidity != null, humidity > 65.0 )
-then
-    Alert a = new Alert();
-    a.setType("HUMIDITY_HIGH");
-    a.setSeverity("MEDIUM");
-    a.setLocationId($r.getLocationId());
-    a.setMessage("Humidity high: " + $r.getHumidity() + "% at location " + $r.getLocationId());
-    a.setTs(new Date());
-    insert(a);
-end
-
-rule "High temperature alert"
-when
-    $r : SensorReading( temperature != null, temperature > 30.0 )
-then
-    Alert a = new Alert();
-    a.setType("TEMPERATURE_HIGH");
-    a.setSeverity("MEDIUM");
-    a.setLocationId($r.getLocationId());
-    a.setMessage("Temperature high: " + $r.getTemperature() + "C at location " + $r.getLocationId());
-    a.setTs(new Date());
-    insert(a);
-end
-
-rule "PM10 with high humidity"
-when
-    $r : SensorReading(
-        pm10 != null,
-        humidity != null,
-        pm10 > 70.0,
-        humidity > 65.0
-    )
-then
-    Alert a = new Alert();
-    a.setType("PM10_HUMIDITY_RISK");
-    a.setSeverity("HIGH");
-    a.setLocationId($r.getLocationId());
-    a.setMessage("PM10 and humidity are both high at location " + $r.getLocationId()
-        + ". PM10=" + $r.getPm10()
-        + ", humidity=" + $r.getHumidity());
-    a.setTs(new Date());
-    insert(a);
-end
-
-rule "PM2.5 with high temperature"
-when
-    $r : SensorReading(
-        pm25 != null,
-        temperature != null,
-        pm25 > 45.0,
-        temperature > 28.0
-    )
-then
-    Alert a = new Alert();
-    a.setType("PM25_TEMPERATURE_RISK");
-    a.setSeverity("HIGH");
-    a.setLocationId($r.getLocationId());
-    a.setMessage("PM2.5 and temperature are both elevated at location " + $r.getLocationId()
-        + ". PM2.5=" + $r.getPm25()
-        + ", temperature=" + $r.getTemperature());
-    a.setTs(new Date());
-    insert(a);
-end
-
-rule "Morning shift PM2.5 alert"
-when
-    $r : SensorReading(
-        shift != null,
-        shift == "morning",
-        pm25 != null,
-        pm25 > 40.0
-    )
-then
-    Alert a = new Alert();
-    a.setType("MORNING_SHIFT_PM25_HIGH");
-    a.setSeverity("MEDIUM");
-    a.setLocationId($r.getLocationId());
-    a.setMessage("PM2.5 is elevated during morning shift at location " + $r.getLocationId()
-        + ". PM2.5=" + $r.getPm25());
-    a.setTs(new Date());
-    insert(a);
-end
-
-rule "Critical pollution alert"
-when
-    $r : SensorReading(
-        pm25 != null,
-        pm10 != null,
-        pm25 > 75.0,
-        pm10 > 120.0
-    )
-then
-    Alert a = new Alert();
-    a.setType("CRITICAL_POLLUTION");
-    a.setSeverity("CRITICAL");
-    a.setLocationId($r.getLocationId());
-    a.setMessage("Critical pollution detected at location " + $r.getLocationId()
-        + ". PM2.5=" + $r.getPm25()
-        + ", PM10=" + $r.getPm10());
     a.setTs(new Date());
     insert(a);
 end
