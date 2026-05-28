@@ -8,12 +8,18 @@ public class Alert implements java.io.Serializable {
 
 	static final long serialVersionUID = 1L;
 
-	@org.kie.api.definition.type.Label(value = "type")
+	@org.kie.api.definition.type.Label("type")
 	private java.lang.String type;
-	@org.kie.api.definition.type.Label(value = "message")
+	@org.kie.api.definition.type.Label("message")
 	private java.lang.String message;
-	@org.kie.api.definition.type.Label(value = "ts")
+	@org.kie.api.definition.type.Label("ts")
 	private java.util.Date ts;
+
+	@org.kie.api.definition.type.Label(value = "severity")
+	private java.lang.String severity;
+
+	@org.kie.api.definition.type.Label(value = "locationId")
+	private java.lang.String locationId;
 
 	public Alert() {
 	}
@@ -42,11 +48,30 @@ public class Alert implements java.io.Serializable {
 		this.ts = ts;
 	}
 
+	public java.lang.String getSeverity() {
+		return this.severity;
+	}
+
+	public void setSeverity(java.lang.String severity) {
+		this.severity = severity;
+	}
+
+	public java.lang.String getLocationId() {
+		return this.locationId;
+	}
+
+	public void setLocationId(java.lang.String locationId) {
+		this.locationId = locationId;
+	}
+
 	public Alert(java.lang.String type, java.lang.String message,
-			java.util.Date ts) {
+			java.util.Date ts, java.lang.String severity,
+			java.lang.String locationId) {
 		this.type = type;
 		this.message = message;
 		this.ts = ts;
+		this.severity = severity;
+		this.locationId = locationId;
 	}
 
 }
