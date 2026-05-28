@@ -8,14 +8,38 @@ public class SensorReading implements java.io.Serializable {
 
 	static final long serialVersionUID = 1L;
 
-	@org.kie.api.definition.type.Label(value = "sensorId")
+	@org.kie.api.definition.type.Label("sensorId")
 	private java.lang.String sensorId;
-	@org.kie.api.definition.type.Label(value = "locationId")
+	@org.kie.api.definition.type.Label("locationId")
 	private java.lang.String locationId;
-	@org.kie.api.definition.type.Label(value = "pm25")
+	@org.kie.api.definition.type.Label("pm25")
 	private java.lang.Double pm25;
-	@org.kie.api.definition.type.Label(value = "ts")
+	@org.kie.api.definition.type.Label("ts")
 	private java.util.Date ts;
+
+	@org.kie.api.definition.type.Label(value = "pm1")
+	private java.lang.Double pm1;
+
+	@org.kie.api.definition.type.Label(value = "pm10")
+	private java.lang.Double pm10;
+
+	@org.kie.api.definition.type.Label(value = "temperature")
+	private java.lang.Double temperature;
+
+	@org.kie.api.definition.type.Label(value = "humidity")
+	private java.lang.Double humidity;
+
+	@org.kie.api.definition.type.Label(value = "hourOfDay")
+	private java.lang.Integer hourOfDay;
+
+	@org.kie.api.definition.type.Label(value = "dayOfWeek")
+	private java.lang.Integer dayOfWeek;
+
+	@org.kie.api.definition.type.Label(value = "monthOfYear")
+	private java.lang.Integer monthOfYear;
+
+	@org.kie.api.definition.type.Label(value = "shift")
+	private java.lang.Integer shift;
 
 	public SensorReading() {
 	}
@@ -52,13 +76,88 @@ public class SensorReading implements java.io.Serializable {
 		this.ts = ts;
 	}
 
+	public java.lang.Double getPm1() {
+		return this.pm1;
+	}
+
+	public void setPm1(java.lang.Double pm1) {
+		this.pm1 = pm1;
+	}
+
+	public java.lang.Double getPm10() {
+		return this.pm10;
+	}
+
+	public void setPm10(java.lang.Double pm10) {
+		this.pm10 = pm10;
+	}
+
+	public java.lang.Double getTemperature() {
+		return this.temperature;
+	}
+
+	public void setTemperature(java.lang.Double temperature) {
+		this.temperature = temperature;
+	}
+
+	public java.lang.Double getHumidity() {
+		return this.humidity;
+	}
+
+	public void setHumidity(java.lang.Double humidity) {
+		this.humidity = humidity;
+	}
+
+	public java.lang.Integer getHourOfDay() {
+		return this.hourOfDay;
+	}
+
+	public void setHourOfDay(java.lang.Integer hourOfDay) {
+		this.hourOfDay = hourOfDay;
+	}
+
+	public java.lang.Integer getDayOfWeek() {
+		return this.dayOfWeek;
+	}
+
+	public void setDayOfWeek(java.lang.Integer dayOfWeek) {
+		this.dayOfWeek = dayOfWeek;
+	}
+
+	public java.lang.Integer getMonthOfYear() {
+		return this.monthOfYear;
+	}
+
+	public void setMonthOfYear(java.lang.Integer monthOfYear) {
+		this.monthOfYear = monthOfYear;
+	}
+
+	public java.lang.Integer getShift() {
+		return this.shift;
+	}
+
+	public void setShift(java.lang.Integer shift) {
+		this.shift = shift;
+	}
+
 	public SensorReading(java.lang.String sensorId,
 			java.lang.String locationId, java.lang.Double pm25,
-			java.util.Date ts) {
+			java.util.Date ts, java.lang.Double pm1, java.lang.Double pm10,
+			java.lang.Double temperature, java.lang.Double humidity,
+			java.lang.Integer hourOfDay, java.lang.Integer dayOfWeek,
+			java.lang.Integer monthOfYear, java.lang.Integer shift) {
 		this.sensorId = sensorId;
 		this.locationId = locationId;
 		this.pm25 = pm25;
 		this.ts = ts;
+		this.pm1 = pm1;
+		this.pm10 = pm10;
+		this.temperature = temperature;
+		this.humidity = humidity;
+		this.hourOfDay = hourOfDay;
+		this.dayOfWeek = dayOfWeek;
+		this.monthOfYear = monthOfYear;
+		this.shift = shift;
 	}
 
 }
