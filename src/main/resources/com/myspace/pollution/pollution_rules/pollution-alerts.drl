@@ -1,8 +1,3 @@
-com.myspace.pollution.pollution_rules.Alert( )
-com.myspace.pollution.pollution_rules.SensorReading( )
-com.myspace.pollution.pollution_rules.Alert( )
-com.myspace.pollution.pollution_rules.SensorReading( )
-
 package com.myspace.pollution.pollution_rules
 
 import com.myspace.pollution.pollution_rules.SensorReading
