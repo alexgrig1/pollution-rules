@@ -17,29 +17,29 @@ public class SensorReading implements java.io.Serializable {
 	@org.kie.api.definition.type.Label("ts")
 	private java.util.Date ts;
 
-	@org.kie.api.definition.type.Label(value = "pm1")
+	@org.kie.api.definition.type.Label("pm1")
 	private java.lang.Double pm1;
 
-	@org.kie.api.definition.type.Label(value = "pm10")
+	@org.kie.api.definition.type.Label("pm10")
 	private java.lang.Double pm10;
 
-	@org.kie.api.definition.type.Label(value = "temperature")
+	@org.kie.api.definition.type.Label("temperature")
 	private java.lang.Double temperature;
 
-	@org.kie.api.definition.type.Label(value = "humidity")
+	@org.kie.api.definition.type.Label("humidity")
 	private java.lang.Double humidity;
 
-	@org.kie.api.definition.type.Label(value = "hourOfDay")
+	@org.kie.api.definition.type.Label("hourOfDay")
 	private java.lang.Integer hourOfDay;
 
-	@org.kie.api.definition.type.Label(value = "dayOfWeek")
+	@org.kie.api.definition.type.Label("dayOfWeek")
 	private java.lang.Integer dayOfWeek;
 
-	@org.kie.api.definition.type.Label(value = "monthOfYear")
+	@org.kie.api.definition.type.Label("monthOfYear")
 	private java.lang.Integer monthOfYear;
 
-	@org.kie.api.definition.type.Label(value = "shift")
-	private java.lang.Integer shift;
+	@org.kie.api.definition.type.Label("shift")
+	private String shift;
 
 	public SensorReading() {
 	}
@@ -132,11 +132,11 @@ public class SensorReading implements java.io.Serializable {
 		this.monthOfYear = monthOfYear;
 	}
 
-	public java.lang.Integer getShift() {
+	public java.lang.String getShift() {
 		return this.shift;
 	}
 
-	public void setShift(java.lang.Integer shift) {
+	public void setShift(java.lang.String shift) {
 		this.shift = shift;
 	}
 
@@ -145,7 +145,7 @@ public class SensorReading implements java.io.Serializable {
 			java.util.Date ts, java.lang.Double pm1, java.lang.Double pm10,
 			java.lang.Double temperature, java.lang.Double humidity,
 			java.lang.Integer hourOfDay, java.lang.Integer dayOfWeek,
-			java.lang.Integer monthOfYear, java.lang.Integer shift) {
+			java.lang.Integer monthOfYear, java.lang.String shift) {
 		this.sensorId = sensorId;
 		this.locationId = locationId;
 		this.pm25 = pm25;
