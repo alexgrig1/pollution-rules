@@ -1,3 +1,8 @@
+com.myspace.pollution.pollution_rules.Alert( )
+com.myspace.pollution.pollution_rules.SensorReading( )
+com.myspace.pollution.pollution_rules.Alert( )
+com.myspace.pollution.pollution_rules.SensorReading( )
+
 package com.myspace.pollution.pollution_rules
 
 import com.myspace.pollution.pollution_rules.SensorReading
@@ -6,22 +11,15 @@ import java.util.Date
 
 rule "PM2.5 threshold alert"
 when
-    $r : SensorReading( pm25 != null, pm25 > 50.0 )
+    $r : SensorReading(
+        pm25 != null,
+        pm25 > 50.0
+    )
 then
     Alert a = new Alert();
     a.setType("PM25_HIGH");
-    a.setMessage("PM2.5 high: " + $r.getPm25() + " at location " + $r.getLocationId());
-    a.setTs(new Date());
-    insert(a);
-end
-
-rule "PM10 threshold alert"
-when
-    $r : SensorReading( pm10 != null, pm10 > 80.0 )
-then
-    Alert a = new Alert();
-    a.setType("PM10_HIGH");
-    a.setMessage("PM10 high: " + $r.getPm10() + " at location " + $r.getLocationId());
-    a.setTs(new Date());
-    insert(a);
-end
+    a.setMessage(
+        "PM2.5 high: "
+        + $r.getPm25()
+        + " at location "
+        + $r.getLocation
