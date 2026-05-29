@@ -11,15 +11,11 @@ import java.util.Date
 
 rule "PM2.5 threshold alert"
 when
-    $r : SensorReading(
-        pm25 != null,
-        pm25 > 50.0
-    )
+    $r : SensorReading( pm25 != null, pm25 > 50.0 )
 then
     Alert a = new Alert();
     a.setType("PM25_HIGH");
-    a.setMessage(
-        "PM2.5 high: "
-        + $r.getPm25()
-        + " at location "
-        + $r.getLocation
+    a.setMessage("PM2.5 high: " + $r.getPm25() + " at location " + $r.getLocationId());
+    a.setTs(new Date());
+    insert(a);
+end
