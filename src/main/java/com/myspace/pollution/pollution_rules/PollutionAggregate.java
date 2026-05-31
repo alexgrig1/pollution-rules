@@ -6,12 +6,139 @@ package com.myspace.pollution.pollution_rules;
 
 public class PollutionAggregate implements java.io.Serializable {
 
-    static final long serialVersionUID = 1L;
+	static final long serialVersionUID = 1L;
 
-    public PollutionAggregate() {
-    }
+	@org.kie.api.definition.type.Label(value = "locationId")
+	private java.lang.String locationId;
+	@org.kie.api.definition.type.Label(value = "pollutant")
+	private java.lang.String pollutant;
+	@org.kie.api.definition.type.Label(value = "periodType")
+	private java.lang.String periodType;
+	@org.kie.api.definition.type.Label(value = "hourOfDay")
+	private java.lang.Integer hourOfDay;
+	@org.kie.api.definition.type.Label(value = "dayOfWeek")
+	private java.lang.Integer dayOfWeek;
+	@org.kie.api.definition.type.Label(value = "monthOfYear")
+	private java.lang.Integer monthOfYear;
+	@org.kie.api.definition.type.Label(value = "shift")
+	private java.lang.String shift;
+	@org.kie.api.definition.type.Label(value = "avgValue")
+	private java.lang.Double avgValue;
+	@org.kie.api.definition.type.Label(value = "minValue")
+	private java.lang.Double minValue;
+	@org.kie.api.definition.type.Label(value = "maxValue")
+	private java.lang.Double maxValue;
+	@org.kie.api.definition.type.Label(value = "countUsed")
+	private java.lang.Integer countUsed;
 
+	public PollutionAggregate() {
+	}
 
+	public java.lang.String getLocationId() {
+		return this.locationId;
+	}
 
+	public void setLocationId(java.lang.String locationId) {
+		this.locationId = locationId;
+	}
+
+	public java.lang.String getPollutant() {
+		return this.pollutant;
+	}
+
+	public void setPollutant(java.lang.String pollutant) {
+		this.pollutant = pollutant;
+	}
+
+	public java.lang.String getPeriodType() {
+		return this.periodType;
+	}
+
+	public void setPeriodType(java.lang.String periodType) {
+		this.periodType = periodType;
+	}
+
+	public java.lang.Integer getHourOfDay() {
+		return this.hourOfDay;
+	}
+
+	public void setHourOfDay(java.lang.Integer hourOfDay) {
+		this.hourOfDay = hourOfDay;
+	}
+
+	public java.lang.Integer getDayOfWeek() {
+		return this.dayOfWeek;
+	}
+
+	public void setDayOfWeek(java.lang.Integer dayOfWeek) {
+		this.dayOfWeek = dayOfWeek;
+	}
+
+	public java.lang.Integer getMonthOfYear() {
+		return this.monthOfYear;
+	}
+
+	public void setMonthOfYear(java.lang.Integer monthOfYear) {
+		this.monthOfYear = monthOfYear;
+	}
+
+	public java.lang.String getShift() {
+		return this.shift;
+	}
+
+	public void setShift(java.lang.String shift) {
+		this.shift = shift;
+	}
+
+	public java.lang.Double getAvgValue() {
+		return this.avgValue;
+	}
+
+	public void setAvgValue(java.lang.Double avgValue) {
+		this.avgValue = avgValue;
+	}
+
+	public java.lang.Double getMinValue() {
+		return this.minValue;
+	}
+
+	public void setMinValue(java.lang.Double minValue) {
+		this.minValue = minValue;
+	}
+
+	public java.lang.Double getMaxValue() {
+		return this.maxValue;
+	}
+
+	public void setMaxValue(java.lang.Double maxValue) {
+		this.maxValue = maxValue;
+	}
+
+	public java.lang.Integer getCountUsed() {
+		return this.countUsed;
+	}
+
+	public void setCountUsed(java.lang.Integer countUsed) {
+		this.countUsed = countUsed;
+	}
+
+	public PollutionAggregate(java.lang.String locationId,
+			java.lang.String pollutant, java.lang.String periodType,
+			java.lang.Integer hourOfDay, java.lang.Integer dayOfWeek,
+			java.lang.Integer monthOfYear, java.lang.String shift,
+			java.lang.Double avgValue, java.lang.Double minValue,
+			java.lang.Double maxValue, java.lang.Integer countUsed) {
+		this.locationId = locationId;
+		this.pollutant = pollutant;
+		this.periodType = periodType;
+		this.hourOfDay = hourOfDay;
+		this.dayOfWeek = dayOfWeek;
+		this.monthOfYear = monthOfYear;
+		this.shift = shift;
+		this.avgValue = avgValue;
+		this.minValue = minValue;
+		this.maxValue = maxValue;
+		this.countUsed = countUsed;
+	}
 
 }
