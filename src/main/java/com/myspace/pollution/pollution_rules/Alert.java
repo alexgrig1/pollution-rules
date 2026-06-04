@@ -18,8 +18,17 @@ public class Alert implements java.io.Serializable {
 	@org.kie.api.definition.type.Label(value = "severity")
 	private java.lang.String severity;
 
+	@org.kie.api.definition.type.Label(value = "source")
+	private java.lang.String source;
+	
 	@org.kie.api.definition.type.Label(value = "locationId")
 	private java.lang.String locationId;
+        @org.kie.api.definition.type.Label(value = "co")
+        private java.lang.Double co;
+        @org.kie.api.definition.type.Label(value = "co2")
+        private java.lang.Double co2;
+
+
 
 	public Alert() {
 	}
@@ -73,5 +82,23 @@ public class Alert implements java.io.Serializable {
 		this.severity = severity;
 		this.locationId = locationId;
 	}
+
+
+        public java.lang.Double getCo() {
+                return this.co;
+        }
+
+        public void setCo(java.lang.Double co) {
+                this.co = co;
+        }
+
+
+        public java.lang.Double getCo2() {
+                return this.co2;
+        }
+
+        public void setCo2(java.lang.Double co2) {
+                this.co2 = co2;
+        }
 
 }
