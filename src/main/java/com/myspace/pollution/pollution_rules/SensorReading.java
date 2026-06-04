@@ -7,7 +7,8 @@ package com.myspace.pollution.pollution_rules;
 public class SensorReading implements java.io.Serializable {
 
 	static final long serialVersionUID = 1L;
-
+	@org.kie.api.definition.type.Label("co2")
+	private java.lang.Double co2;
 	@org.kie.api.definition.type.Label("sensorId")
 	private java.lang.String sensorId;
 	@org.kie.api.definition.type.Label("locationId")
@@ -43,7 +44,13 @@ public class SensorReading implements java.io.Serializable {
 
 	public SensorReading() {
 	}
+	public java.lang.Double getCo2() {
+		return this.co2;
+	}
 
+	public void setCo2(java.lang.Double co2) {
+		this.co2 = co2;
+	}
 	public java.lang.String getSensorId() {
 		return this.sensorId;
 	}
