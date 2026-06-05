@@ -8,30 +8,12 @@ public class Alert implements java.io.Serializable {
 
 	static final long serialVersionUID = 1L;
 
-	@org.kie.api.definition.type.Label("type")
+	@org.kie.api.definition.type.Label(value = "type")
 	private java.lang.String type;
-	@org.kie.api.definition.type.Label("message")
+	@org.kie.api.definition.type.Label(value = "message")
 	private java.lang.String message;
-	@org.kie.api.definition.type.Label("ts")
+	@org.kie.api.definition.type.Label(value = "ts")
 	private java.util.Date ts;
-
-	@org.kie.api.definition.type.Label(value = "severity")
-	private java.lang.String severity;
-
-	@org.kie.api.definition.type.Label(value = "source")
-	private java.lang.String source;
-	
-	@org.kie.api.definition.type.Label(value = "locationId")
-	private java.lang.String locationId;
-        @org.kie.api.definition.type.Label(value = "co")
-        private java.lang.Double co;
-        @org.kie.api.definition.type.Label(value = "co2")
-        private java.lang.Double co2;
-        @org.kie.api.definition.type.Label(value = "co3")
-        private java.lang.Double co3;
-
-
-
 
 	public Alert() {
 	}
@@ -60,57 +42,11 @@ public class Alert implements java.io.Serializable {
 		this.ts = ts;
 	}
 
-	public java.lang.String getSeverity() {
-		return this.severity;
-	}
-
-	public void setSeverity(java.lang.String severity) {
-		this.severity = severity;
-	}
-
-	public java.lang.String getLocationId() {
-		return this.locationId;
-	}
-
-	public void setLocationId(java.lang.String locationId) {
-		this.locationId = locationId;
-	}
-
 	public Alert(java.lang.String type, java.lang.String message,
-			java.util.Date ts, java.lang.String severity,
-			java.lang.String locationId) {
+			java.util.Date ts) {
 		this.type = type;
 		this.message = message;
 		this.ts = ts;
-		this.severity = severity;
-		this.locationId = locationId;
 	}
-
-
-        public java.lang.Double getCo() {
-                return this.co;
-        }
-
-        public void setCo(java.lang.Double co) {
-                this.co = co;
-        }
-
-
-        public java.lang.Double getCo2() {
-                return this.co2;
-        }
-
-        public void setCo2(java.lang.Double co2) {
-                this.co2 = co2;
-        }
-
-
-        public java.lang.Double getCo3() {
-                return this.co3;
-        }
-
-        public void setCo3(java.lang.Double co3) {
-                this.co3 = co3;
-        }
 
 }
