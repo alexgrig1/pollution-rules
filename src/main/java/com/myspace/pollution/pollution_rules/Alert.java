@@ -27,6 +27,9 @@ public class Alert implements java.io.Serializable {
         private java.lang.Double co;
         @org.kie.api.definition.type.Label(value = "co2")
         private java.lang.Double co2;
+        @org.kie.api.definition.type.Label(value = "co3")
+        private java.lang.Double co3;
+
 
 
 
@@ -99,6 +102,15 @@ public class Alert implements java.io.Serializable {
 
         public void setCo2(java.lang.Double co2) {
                 this.co2 = co2;
+        }
+
+
+        public java.lang.Double getCo3() {
+                return this.co3;
+        }
+
+        public void setCo3(java.lang.Double co3) {
+                this.co3 = co3;
         }
 
 }
