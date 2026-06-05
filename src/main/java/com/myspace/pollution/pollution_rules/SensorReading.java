@@ -41,6 +41,9 @@ public class SensorReading implements java.io.Serializable {
 
 	@org.kie.api.definition.type.Label("shift")
 	private String shift;
+        @org.kie.api.definition.type.Label(value = "co3")
+        private java.lang.Double co3;
+
 
 	public SensorReading() {
 	}
@@ -166,5 +169,14 @@ public class SensorReading implements java.io.Serializable {
 		this.monthOfYear = monthOfYear;
 		this.shift = shift;
 	}
+
+
+        public java.lang.Double getCo3() {
+                return this.co3;
+        }
+
+        public void setCo3(java.lang.Double co3) {
+                this.co3 = co3;
+        }
 
 }
