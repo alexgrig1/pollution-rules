@@ -41,10 +41,14 @@ public class SensorReading implements java.io.Serializable {
 
 	@org.kie.api.definition.type.Label("shift")
 	private String shift;
-        @org.kie.api.definition.type.Label(value = "co3")
-        private java.lang.Double co3;
+   
+	@org.kie.api.definition.type.Label(value = "co3")
+    private java.lang.Double co3;
+        @org.kie.api.definition.type.Label(value = "co4")
+        private java.lang.Double co4;
 
 
+	
 	public SensorReading() {
 	}
 	public java.lang.Double getCo2() {
@@ -171,12 +175,23 @@ public class SensorReading implements java.io.Serializable {
 	}
 
 
-        public java.lang.Double getCo3() {
-                return this.co3;
+    //   @org.kie.api.definition.type.Label(value = "co3")
+	// private java.lang.Double co3;
+
+	public java.lang.Double getCo3() {
+			return this.co3;
+	}
+
+	public void setCo3(java.lang.Double co3) {
+			this.co3 = co3;
+	}
+
+        public java.lang.Double getCo4() {
+                return this.co4;
         }
 
-        public void setCo3(java.lang.Double co3) {
-                this.co3 = co3;
+        public void setCo4(java.lang.Double co4) {
+                this.co4 = co4;
         }
 
 }
