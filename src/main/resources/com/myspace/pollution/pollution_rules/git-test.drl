@@ -1,0 +1,16 @@
+package com.myspace.pollution.pollution_rules;
+
+import java.util.Date;
+
+rule "Git test rule"
+when
+    $r : SensorReading(pm25 != null, pm25 > 10)
+then
+    Alert a = new Alert();
+    a.setType("GIT_TEST");
+    a.setSeverity("LOW");
+    a.setLocationId($r.getLocationId());
+    a.setMessage("Git deployed rule fired");
+    a.setTs(new Date());
+    insert(a);
+end
