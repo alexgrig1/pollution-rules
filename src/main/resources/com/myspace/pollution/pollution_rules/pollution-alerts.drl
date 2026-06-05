@@ -283,15 +283,3 @@ then
     alert.setTs(new Date());
     insert(alert);
 end
-rule "Git pollution alerts test rule"
-when
-    $r : SensorReading(pm25 != null, pm25 > 10)
-then
-    Alert a = new Alert();
-    a.setType("GIT_POLLUTION_ALERTS_TEST");
-    a.setSeverity("LOW");
-    a.setLocationId($r.getLocationId());
-    a.setMessage("Git test rule inside pollution-alerts.drl fired");
-    a.setTs(new Date());
-    insert(a);
-end
