@@ -1,0 +1,140 @@
+package com.myspace.pollution.pollution_rules
+
+import com.myspace.pollution.pollution_rules.PollutionAggregate
+import com.myspace.pollution.pollution_rules.Alert
+import java.util.Date
+
+rule "Hourly PM2.5 average high"
+when
+    $a : PollutionAggregate(
+        periodType == "hourly",
+        pollutant == "pm25",
+        avgValue != null,
+        countUsed != null,
+        avgValue > 50.0,
+        countUsed >= 10
+    )
+then
+    Alert alert = new Alert();
+    alert.setType("HOURLY_PM25_AVG_HIGH");
+    alert.setSeverity("HIGH");
+    alert.setLocationId($a.getLocationId());
+    alert.setMessage("Hourly PM2.5 average is high at location " + $a.getLocationId()
+        + ". Avg=" + $a.getAvgValue()
+        + ", count=" + $a.getCountUsed());
+    alert.setTs(new Date());
+    insert(alert);
+end
+
+rule "Hourly PM10 average high"
+when
+    $a : PollutionAggregate(
+        periodType == "hourly",
+        pollutant == "pm10",
+        avgValue != null,
+        countUsed != null,
+        avgValue > 80.0,
+        countUsed >= 10
+    )
+then
+    Alert alert = new Alert();
+    alert.setType("HOURLY_PM10_AVG_HIGH");
+    alert.setSeverity("HIGH");
+    alert.setLocationId($a.getLocationId());
+    alert.setMessage("Hourly PM10 average is high at location " + $a.getLocationId()
+        + ". Avg=" + $a.getAvgValue()
+        + ", count=" + $a.getCountUsed());
+    alert.setTs(new Date());
+    insert(alert);
+end
+
+rule "Morning shift PM2.5 average high"
+when
+    $a : PollutionAggregate(
+        periodType == "shift",
+        shift == "morning",
+        pollutant == "pm25",
+        avgValue != null,
+        countUsed != null,
+        avgValue > 40.0,
+        countUsed >= 10
+    )
+then
+    Alert alert = new Alert();
+    alert.setType("SHIFT_MORNING_PM25_AVG_HIGH");
+    alert.setSeverity("MEDIUM");
+    alert.setLocationId($a.getLocationId());
+    alert.setMessage("Morning shift PM2.5 average is elevated at location " + $a.getLocationId()
+        + ". Avg=" + $a.getAvgValue()
+        + ", count=" + $a.getCountUsed());
+    alert.setTs(new Date());
+    insert(alert);
+end
+
+rule "Shift PM10 humidity risk"
+when
+    $pm10 : PollutionAggregate(
+        periodType == "shift",
+        pollutant == "pm10",
+        avgValue != null,
+        avgValue > 70.0,
+        countUsed != null,
+        countUsed >= 10,
+        $loc : locationId,
+        $shift : shift
+    )
+
+    $humidity : PollutionAggregate(
+        periodType == "shift",
+        pollutant == "humidity",
+        avgValue != null,
+        avgValue > 65.0,
+        locationId == $loc,
+        shift == $shift
+    )
+then
+    Alert alert = new Alert();
+    alert.setType("SHIFT_PM10_HUMIDITY_RISK");
+    alert.setSeverity("HIGH");
+    alert.setLocationId($loc);
+    alert.setMessage("Shift PM10 and humidity averages are both high at location " + $loc
+        + ", shift=" + $shift
+        + ". PM10 avg=" + $pm10.getAvgValue()
+        + ", humidity avg=" + $humidity.getAvgValue());
+    alert.setTs(new Date());
+    insert(alert);
+end
+
+rule "Critical aggregate pollution"
+when
+    $pm25 : PollutionAggregate(
+        periodType == "hourly",
+        pollutant == "pm25",
+        avgValue != null,
+        avgValue > 75.0,
+        countUsed != null,
+        countUsed >= 10,
+        $loc : locationId,
+        $hour : hourOfDay
+    )
+
+    $pm10 : PollutionAggregate(
+        periodType == "hourly",
+        pollutant == "pm10",
+        avgValue != null,
+        avgValue > 120.0,
+        locationId == $loc,
+        hourOfDay == $hour
+    )
+then
+    Alert alert = new Alert();
+    alert.setType("CRITICAL_AGGREGATE_POLLUTION");
+    alert.setSeverity("CRITICAL");
+    alert.setLocationId($loc);
+    alert.setMessage("Critical hourly aggregate pollution at location " + $loc
+        + ", hour=" + $hour
+        + ". PM2.5 avg=" + $pm25.getAvgValue()
+        + ", PM10 avg=" + $pm10.getAvgValue());
+    alert.setTs(new Date());
+    insert(alert);
+end
