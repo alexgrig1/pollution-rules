@@ -1,0 +1,187 @@
+package com.myspace.pollution.pollution_rules
+
+import com.myspace.pollution.pollution_rules.PollutionAggregate
+import com.myspace.pollution.pollution_rules.PollutionAnalytic
+import com.myspace.pollution.pollution_rules.Alert
+import java.util.Date
+
+rule "Scheduled hourly PM2.5 analytic high"
+when
+    $a : PollutionAggregate(
+        periodType == "hourly",
+        pollutant == "pm25",
+        avgValue != null,
+        countUsed != null,
+        countUsed >= 10,
+        avgValue > 50.0
+    )
+then
+    PollutionAnalytic analytic = new PollutionAnalytic();
+    analytic.setType("HOURLY_PM25_AVG");
+    analytic.setPeriodType("hourly");
+    analytic.setPollutant("pm25");
+    analytic.setLocationId($a.getLocationId());
+    analytic.setValue($a.getAvgValue());
+    analytic.setThreshold(50.0);
+    analytic.setCountUsed($a.getCountUsed());
+    analytic.setHourOfDay($a.getHourOfDay());
+    analytic.setDayOfWeek($a.getDayOfWeek());
+    analytic.setMonthOfYear($a.getMonthOfYear());
+    analytic.setMessage("Scheduled hourly PM2.5 average calculated by Drools. Avg="
+        + $a.getAvgValue()
+        + ", count=" + $a.getCountUsed()
+        + ", location=" + $a.getLocationId());
+    analytic.setTs(new Date());
+    insert(analytic);
+
+    Alert alert = new Alert();
+    alert.setType("SCHEDULED_HOURLY_PM25_AVG_HIGH");
+    alert.setSeverity("HIGH");
+    alert.setLocationId($a.getLocationId());
+    alert.setMessage("Scheduled hourly PM2.5 average exceeded threshold at location "
+        + $a.getLocationId()
+        + ". Avg=" + $a.getAvgValue()
+        + ", threshold=50.0"
+        + ", count=" + $a.getCountUsed());
+    alert.setTs(new Date());
+    insert(alert);
+end
+
+rule "Scheduled hourly PM10 analytic high"
+when
+    $a : PollutionAggregate(
+        periodType == "hourly",
+        pollutant == "pm10",
+        avgValue != null,
+        countUsed != null,
+        countUsed >= 10,
+        avgValue > 80.0
+    )
+then
+    PollutionAnalytic analytic = new PollutionAnalytic();
+    analytic.setType("HOURLY_PM10_AVG");
+    analytic.setPeriodType("hourly");
+    analytic.setPollutant("pm10");
+    analytic.setLocationId($a.getLocationId());
+    analytic.setValue($a.getAvgValue());
+    analytic.setThreshold(80.0);
+    analytic.setCountUsed($a.getCountUsed());
+    analytic.setHourOfDay($a.getHourOfDay());
+    analytic.setDayOfWeek($a.getDayOfWeek());
+    analytic.setMonthOfYear($a.getMonthOfYear());
+    analytic.setMessage("Scheduled hourly PM10 average calculated by Drools. Avg="
+        + $a.getAvgValue()
+        + ", count=" + $a.getCountUsed()
+        + ", location=" + $a.getLocationId());
+    analytic.setTs(new Date());
+    insert(analytic);
+
+    Alert alert = new Alert();
+    alert.setType("SCHEDULED_HOURLY_PM10_AVG_HIGH");
+    alert.setSeverity("HIGH");
+    alert.setLocationId($a.getLocationId());
+    alert.setMessage("Scheduled hourly PM10 average exceeded threshold at location "
+        + $a.getLocationId()
+        + ". Avg=" + $a.getAvgValue()
+        + ", threshold=80.0"
+        + ", count=" + $a.getCountUsed());
+    alert.setTs(new Date());
+    insert(alert);
+end
+
+rule "Scheduled morning shift PM2.5 analytic high"
+when
+    $a : PollutionAggregate(
+        periodType == "shift",
+        shift == "morning",
+        pollutant == "pm25",
+        avgValue != null,
+        countUsed != null,
+        countUsed >= 10,
+        avgValue > 40.0
+    )
+then
+    PollutionAnalytic analytic = new PollutionAnalytic();
+    analytic.setType("SHIFT_MORNING_PM25_AVG");
+    analytic.setPeriodType("shift");
+    analytic.setPollutant("pm25");
+    analytic.setLocationId($a.getLocationId());
+    analytic.setValue($a.getAvgValue());
+    analytic.setThreshold(40.0);
+    analytic.setCountUsed($a.getCountUsed());
+    analytic.setShift($a.getShift());
+    analytic.setDayOfWeek($a.getDayOfWeek());
+    analytic.setMonthOfYear($a.getMonthOfYear());
+    analytic.setMessage("Scheduled morning shift PM2.5 average calculated by Drools. Avg="
+        + $a.getAvgValue()
+        + ", count=" + $a.getCountUsed()
+        + ", location=" + $a.getLocationId());
+    analytic.setTs(new Date());
+    insert(analytic);
+
+    Alert alert = new Alert();
+    alert.setType("SCHEDULED_SHIFT_MORNING_PM25_AVG_HIGH");
+    alert.setSeverity("MEDIUM");
+    alert.setLocationId($a.getLocationId());
+    alert.setMessage("Scheduled morning shift PM2.5 average exceeded threshold at location "
+        + $a.getLocationId()
+        + ". Avg=" + $a.getAvgValue()
+        + ", threshold=40.0"
+        + ", count=" + $a.getCountUsed());
+    alert.setTs(new Date());
+    insert(alert);
+end
+
+rule "Scheduled shift PM10 humidity risk"
+when
+    $pm10 : PollutionAggregate(
+        periodType == "shift",
+        pollutant == "pm10",
+        avgValue != null,
+        countUsed != null,
+        countUsed >= 10,
+        avgValue > 70.0,
+        $loc : locationId,
+        $shift : shift
+    )
+
+    $humidity : PollutionAggregate(
+        periodType == "shift",
+        pollutant == "humidity",
+        avgValue != null,
+        avgValue > 65.0,
+        locationId == $loc,
+        shift == $shift
+    )
+then
+    PollutionAnalytic analytic = new PollutionAnalytic();
+    analytic.setType("SHIFT_PM10_HUMIDITY_RISK");
+    analytic.setPeriodType("shift");
+    analytic.setPollutant("pm10_humidity");
+    analytic.setLocationId($loc);
+    analytic.setValue($pm10.getAvgValue());
+    analytic.setThreshold(70.0);
+    analytic.setCountUsed($pm10.getCountUsed());
+    analytic.setShift($shift);
+    analytic.setDayOfWeek($pm10.getDayOfWeek());
+    analytic.setMonthOfYear($pm10.getMonthOfYear());
+    analytic.setMessage("Scheduled shift PM10 and humidity risk calculated by Drools. PM10 avg="
+        + $pm10.getAvgValue()
+        + ", humidity avg=" + $humidity.getAvgValue()
+        + ", location=" + $loc
+        + ", shift=" + $shift);
+    analytic.setTs(new Date());
+    insert(analytic);
+
+    Alert alert = new Alert();
+    alert.setType("SCHEDULED_SHIFT_PM10_HUMIDITY_RISK");
+    alert.setSeverity("HIGH");
+    alert.setLocationId($loc);
+    alert.setMessage("Scheduled shift PM10 and humidity risk at location "
+        + $loc
+        + ", shift=" + $shift
+        + ". PM10 avg=" + $pm10.getAvgValue()
+        + ", humidity avg=" + $humidity.getAvgValue());
+    alert.setTs(new Date());
+    insert(alert);
+end
