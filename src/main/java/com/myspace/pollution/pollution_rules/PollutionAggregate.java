@@ -30,6 +30,9 @@ public class PollutionAggregate implements java.io.Serializable {
 	private java.lang.Double maxValue;
 	@org.kie.api.definition.type.Label(value = "countUsed")
 	private java.lang.Integer countUsed;
+        @org.kie.api.definition.type.Label(value = "dayOfMonth")
+        private java.lang.Integer dayOfMonth;
+
 
 	public PollutionAggregate() {
 	}
@@ -140,5 +143,14 @@ public class PollutionAggregate implements java.io.Serializable {
 		this.maxValue = maxValue;
 		this.countUsed = countUsed;
 	}
+
+
+        public java.lang.Integer getDayOfMonth() {
+                return this.dayOfMonth;
+        }
+
+        public void setDayOfMonth(java.lang.Integer dayOfMonth) {
+                this.dayOfMonth = dayOfMonth;
+        }
 
 }
