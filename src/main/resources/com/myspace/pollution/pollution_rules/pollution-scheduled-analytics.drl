@@ -2,7 +2,6 @@ package com.myspace.pollution.pollution_rules
 
 import com.myspace.pollution.pollution_rules.PollutionAggregate
 import com.myspace.pollution.pollution_rules.PollutionAnalytic
-import com.myspace.pollution.pollution_rules.Alert
 import java.util.Date
 
 rule "Scheduled hourly PM2.5 analytic high"
@@ -34,17 +33,7 @@ then
     analytic.setTs(new Date());
     insert(analytic);
 
-    Alert alert = new Alert();
-    alert.setType("SCHEDULED_HOURLY_PM25_AVG_HIGH");
-    alert.setSeverity("HIGH");
-    alert.setLocationId($a.getLocationId());
-    alert.setMessage("Scheduled hourly PM2.5 average exceeded threshold at location "
-        + $a.getLocationId()
-        + ". Avg=" + $a.getAvgValue()
-        + ", threshold=50.0"
-        + ", count=" + $a.getCountUsed());
-    alert.setTs(new Date());
-    insert(alert);
+ 
 end
 
 rule "Scheduled hourly PM10 analytic high"
@@ -76,17 +65,7 @@ then
     analytic.setTs(new Date());
     insert(analytic);
 
-    Alert alert = new Alert();
-    alert.setType("SCHEDULED_HOURLY_PM10_AVG_HIGH");
-    alert.setSeverity("HIGH");
-    alert.setLocationId($a.getLocationId());
-    alert.setMessage("Scheduled hourly PM10 average exceeded threshold at location "
-        + $a.getLocationId()
-        + ". Avg=" + $a.getAvgValue()
-        + ", threshold=80.0"
-        + ", count=" + $a.getCountUsed());
-    alert.setTs(new Date());
-    insert(alert);
+   
 end
 
 rule "Scheduled morning shift PM2.5 analytic high"
@@ -119,17 +98,6 @@ then
     analytic.setTs(new Date());
     insert(analytic);
 
-    Alert alert = new Alert();
-    alert.setType("SCHEDULED_SHIFT_MORNING_PM25_AVG_HIGH");
-    alert.setSeverity("MEDIUM");
-    alert.setLocationId($a.getLocationId());
-    alert.setMessage("Scheduled morning shift PM2.5 average exceeded threshold at location "
-        + $a.getLocationId()
-        + ". Avg=" + $a.getAvgValue()
-        + ", threshold=40.0"
-        + ", count=" + $a.getCountUsed());
-    alert.setTs(new Date());
-    insert(alert);
 end
 
 rule "Scheduled shift PM10 humidity risk"
@@ -173,15 +141,5 @@ then
     analytic.setTs(new Date());
     insert(analytic);
 
-    Alert alert = new Alert();
-    alert.setType("SCHEDULED_SHIFT_PM10_HUMIDITY_RISK");
-    alert.setSeverity("HIGH");
-    alert.setLocationId($loc);
-    alert.setMessage("Scheduled shift PM10 and humidity risk at location "
-        + $loc
-        + ", shift=" + $shift
-        + ". PM10 avg=" + $pm10.getAvgValue()
-        + ", humidity avg=" + $humidity.getAvgValue());
-    alert.setTs(new Date());
-    insert(alert);
+
 end
