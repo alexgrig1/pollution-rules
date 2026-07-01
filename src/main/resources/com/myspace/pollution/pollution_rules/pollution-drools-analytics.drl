@@ -111,7 +111,7 @@ when
         count(1)
     )
 
-    eval($count.intValue() >= 10 && $pm10Avg.doubleValue() > 70.0 && $humidityAvg.doubleValue() > 65.0)
+    eval($count.intValue() >= 10)
 then
     PollutionAnalytic analytic = new PollutionAnalytic();
     analytic.setType("DROOLS_SHIFT_PM10_HUMIDITY_RISK");
@@ -142,7 +142,7 @@ when
         count(1)
     )
 
-    eval($count.intValue() >= 10 && $avg.doubleValue() > 50.0)
+    eval($count.intValue() >= 10)
 then
     PollutionAnalytic analytic = new PollutionAnalytic();
     analytic.setType("DROOLS_DAILY_PM25_AVG");
@@ -171,7 +171,7 @@ when
         count(1)
     )
 
-    eval($count.intValue() >= 10 && $avg.doubleValue() > 80.0)
+    eval($count.intValue() >= 10)
 then
     PollutionAnalytic analytic = new PollutionAnalytic();
     analytic.setType("DROOLS_DAILY_PM10_AVG");
@@ -200,7 +200,7 @@ when
         count(1)
     )
 
-    eval($count.intValue() >= 10 && $avg.doubleValue() > 80.0)
+    eval($count.intValue() >= 10)
 then
     PollutionAnalytic analytic = new PollutionAnalytic();
     analytic.setType("DROOLS_MONTHLY_PM10_AVG");
