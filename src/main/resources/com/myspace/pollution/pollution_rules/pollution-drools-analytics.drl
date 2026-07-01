@@ -16,7 +16,7 @@ when
         count(1)
     )
 
-    eval($count.intValue() >= 10 && $avg.doubleValue() > 40.0)
+    eval($count.intValue() >= 10)
 then
     PollutionAnalytic analytic = new PollutionAnalytic();
     analytic.setType("DROOLS_SHIFT_MORNING_PM25_AVG");
@@ -46,7 +46,7 @@ when
         count(1)
     )
 
-    eval($count.intValue() >= 10 && $avg.doubleValue() > 40.0)
+    eval($count.intValue() >= 10)
 then
     PollutionAnalytic analytic = new PollutionAnalytic();
     analytic.setType("DROOLS_SHIFT_MORNING_PM25_AVG");
@@ -76,7 +76,7 @@ when
         count(1)
     )
 
-    eval($count.intValue() >= 10 && $avg.doubleValue() > 40.0)
+    eval($count.intValue() >= 10)
 then
     PollutionAnalytic analytic = new PollutionAnalytic();
     analytic.setType("DROOLS_SHIFT_MORNING_PM25_AVG");
