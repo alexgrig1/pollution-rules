@@ -1,0 +1,126 @@
+package com.myspace.pollution.pollution_rules
+
+import com.myspace.pollution.pollution_rules.PollutionAnalytic
+import com.myspace.pollution.pollution_rules.Alert
+import java.util.Date
+
+rule "Scheduled alert for Drools shift morning PM25 average"
+when
+    $a : PollutionAnalytic(
+        type == "DROOLS_SHIFT_MORNING_PM25_AVG",
+        value != null,
+        threshold != null,
+        value > threshold,
+        countUsed != null,
+        countUsed >= 10
+    )
+then
+    Alert alert = new Alert();
+    alert.setType("SCHEDULED_ALERT_DROOLS_SHIFT_MORNING_PM25_HIGH");
+    alert.setSeverity("MEDIUM");
+    alert.setLocationId($a.getLocationId());
+    alert.setMessage("Scheduled alert from Drools analytic: morning PM2.5 average exceeded threshold at location "
+        + $a.getLocationId()
+        + ". Value=" + $a.getValue()
+        + ", threshold=" + $a.getThreshold()
+        + ", count=" + $a.getCountUsed());
+    alert.setTs(new Date());
+    insert(alert);
+end
+
+rule "Scheduled alert for Drools PM10 humidity risk"
+when
+    $a : PollutionAnalytic(
+        type == "DROOLS_SHIFT_PM10_HUMIDITY_RISK",
+        value != null,
+        threshold != null,
+        value > threshold,
+        countUsed != null,
+        countUsed >= 10
+    )
+then
+    Alert alert = new Alert();
+    alert.setType("SCHEDULED_ALERT_DROOLS_SHIFT_PM10_HUMIDITY_RISK");
+    alert.setSeverity("HIGH");
+    alert.setLocationId($a.getLocationId());
+    alert.setMessage("Scheduled alert from Drools analytic: PM10/humidity risk at location "
+        + $a.getLocationId()
+        + ", shift=" + $a.getShift()
+        + ". Value=" + $a.getValue()
+        + ", threshold=" + $a.getThreshold()
+        + ", count=" + $a.getCountUsed());
+    alert.setTs(new Date());
+    insert(alert);
+end
+
+rule "Scheduled alert for Drools daily PM25 average"
+when
+    $a : PollutionAnalytic(
+        type == "DROOLS_DAILY_PM25_AVG",
+        value != null,
+        threshold != null,
+        value > threshold,
+        countUsed != null,
+        countUsed >= 10
+    )
+then
+    Alert alert = new Alert();
+    alert.setType("SCHEDULED_ALERT_DROOLS_DAILY_PM25_HIGH");
+    alert.setSeverity("HIGH");
+    alert.setLocationId($a.getLocationId());
+    alert.setMessage("Scheduled alert from Drools analytic: daily PM2.5 average exceeded threshold at location "
+        + $a.getLocationId()
+        + ". Value=" + $a.getValue()
+        + ", threshold=" + $a.getThreshold()
+        + ", count=" + $a.getCountUsed());
+    alert.setTs(new Date());
+    insert(alert);
+end
+
+rule "Scheduled alert for Drools daily PM10 average"
+when
+    $a : PollutionAnalytic(
+        type == "DROOLS_DAILY_PM10_AVG",
+        value != null,
+        threshold != null,
+        value > threshold,
+        countUsed != null,
+        countUsed >= 10
+    )
+then
+    Alert alert = new Alert();
+    alert.setType("SCHEDULED_ALERT_DROOLS_DAILY_PM10_HIGH");
+    alert.setSeverity("HIGH");
+    alert.setLocationId($a.getLocationId());
+    alert.setMessage("Scheduled alert from Drools analytic: daily PM10 average exceeded threshold at location "
+        + $a.getLocationId()
+        + ". Value=" + $a.getValue()
+        + ", threshold=" + $a.getThreshold()
+        + ", count=" + $a.getCountUsed());
+    alert.setTs(new Date());
+    insert(alert);
+end
+
+rule "Scheduled alert for Drools monthly PM10 average"
+when
+    $a : PollutionAnalytic(
+        type == "DROOLS_MONTHLY_PM10_AVG",
+        value != null,
+        threshold != null,
+        value > threshold,
+        countUsed != null,
+        countUsed >= 10
+    )
+then
+    Alert alert = new Alert();
+    alert.setType("SCHEDULED_ALERT_DROOLS_MONTHLY_PM10_HIGH");
+    alert.setSeverity("HIGH");
+    alert.setLocationId($a.getLocationId());
+    alert.setMessage("Scheduled alert from Drools analytic: monthly PM10 average exceeded threshold at location "
+        + $a.getLocationId()
+        + ". Value=" + $a.getValue()
+        + ", threshold=" + $a.getThreshold()
+        + ", count=" + $a.getCountUsed());
+    alert.setTs(new Date());
+    insert(alert);
+end
