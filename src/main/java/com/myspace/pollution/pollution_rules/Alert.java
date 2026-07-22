@@ -41,6 +41,9 @@ public class Alert implements java.io.Serializable {
         private java.lang.Double co11;
         @org.kie.api.definition.type.Label(value = "co99")
         private java.lang.Double co99;
+        @org.kie.api.definition.type.Label(value = "co98")
+        private java.lang.Double co98;
+
 
 
 
@@ -183,6 +186,15 @@ public class Alert implements java.io.Serializable {
 
         public void setCo99(java.lang.Double co99) {
                 this.co99 = co99;
+        }
+
+
+        public java.lang.Double getCo98() {
+                return this.co98;
+        }
+
+        public void setCo98(java.lang.Double co98) {
+                this.co98 = co98;
         }
 
 }
