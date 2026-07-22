@@ -45,6 +45,9 @@ public class PollutionAnalytic implements java.io.Serializable {
 
     @org.kie.api.definition.type.Label(value = "ts")
     private java.util.Date ts;
+        @org.kie.api.definition.type.Label(value = "test")
+        private java.lang.Double test;
+
 
     public PollutionAnalytic() {
     }
@@ -160,4 +163,13 @@ public class PollutionAnalytic implements java.io.Serializable {
     public void setTs(java.util.Date ts) {
         this.ts = ts;
     }
+
+        public java.lang.Double getTest() {
+                return this.test;
+        }
+
+        public void setTest(java.lang.Double test) {
+                this.test = test;
+        }
+
 }
