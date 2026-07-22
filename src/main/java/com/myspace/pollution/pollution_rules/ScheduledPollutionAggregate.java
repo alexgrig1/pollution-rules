@@ -19,6 +19,18 @@
                 this.pm25 = pm25;
         }
 
+
+        @org.kie.api.definition.type.Label(value = "test")
+        private java.lang.Double test;
+
+        public java.lang.Double getTest() {
+                return this.test;
+        }
+
+        public void setTest(java.lang.Double test) {
+                this.test = test;
+        }
+
 }
 
 
